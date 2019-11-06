@@ -1,8 +1,9 @@
 # srtools
 Utilities for LEGO Stunt Rally (LSR).
-Requires Python 3.
 
 ## Utilities
+
+## Python 3
 
 ### gentrack.py
 
@@ -20,7 +21,21 @@ Outputs various details about the track file.
 
 Contains helper data for the other scripts.
 
+## C# #
+
+### gentrack.cs
+
+gentrack.py rewritten in C#, should behave the same way.
+
+![Screenshot of C# gentrack](ss/cs_gentrack.png)
+
+### readtrack.cs
+
+readtrack.py rewritten in C#, should behave the same way.
+
+![Screenshot of C# gentrack](ss/cs_readtrack.png)
+
 ## Credits
 
-- Zsolt 'Yellowberry' Zitting - gentrack.py, file format research
+- Zsolt 'Yellowberry' Zitting - gentrack, readtrack, file format research
 - Alberto 'kbios' Mattea - file format research

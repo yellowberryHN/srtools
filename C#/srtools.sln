@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29318.209
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gentrack", "gentrack.csproj", "{A6DA9AF9-25E0-453A-9E4F-A24C5EFCF78E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "readtrack", "readtrack.csproj", "{8D5D5957-488A-48AA-BC4C-114DB17D513D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6DA9AF9-25E0-453A-9E4F-A24C5EFCF78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DA9AF9-25E0-453A-9E4F-A24C5EFCF78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DA9AF9-25E0-453A-9E4F-A24C5EFCF78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DA9AF9-25E0-453A-9E4F-A24C5EFCF78E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D5D5957-488A-48AA-BC4C-114DB17D513D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D5D5957-488A-48AA-BC4C-114DB17D513D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D5D5957-488A-48AA-BC4C-114DB17D513D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D5D5957-488A-48AA-BC4C-114DB17D513D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E754983B-2A06-462C-8432-DDF79B8D68D7}
+	EndGlobalSection
+EndGlobal
