@@ -1,4 +1,4 @@
-# readtrack.py - Reads a LEGO Stunt Rally track file. By Yellowberry, MIT license.
+## readtrack.py - Reads a LEGO Stunt Rally track file. By Yellowberry, MIT license.
 
 import os, sys, struct, array, random
 
@@ -25,7 +25,7 @@ def getNid(id, theme):
 			break
 		ret += 1
 	return ret
-
+ 
 def parsePiece(data):
 	height = struct.unpack("<f", data[0])[0] # Unpack LE float
 	if   height == -1: height = 0
@@ -70,8 +70,7 @@ with open(sys.argv[1], "rb") as file:
 
 	realsize = os.path.getsize(sys.argv[1]) # get actual filesize
 
-	lego_header = file.read(11) # 'LEGO MOTO\x00\x00'
-	trk_cst_version = file.read(1)[0] # 0 or 1
+	lego_header = file.read(12) # 'LEGO MOTO\0\0\0'
 	crashint = struct.unpack("<i", file.read(4))[0] # Always 5
 	trk_fsize = struct.unpack("<i", file.read(4))[0]
 	if trk_fsize != 65576: raise Exception("Binary filesize reports non 64KB file!")
@@ -99,7 +98,6 @@ with open(sys.argv[1], "rb") as file:
 #print(iters, skip)
 #print(trk_pieces)
 print("## Track information for", trk_name, "##")
-print("Custom:", True if trk_cst_version else False)
 print("Fizesize:", trk_fsize)
 print("Track Type:", s.t_size[trk_size])
 print("Track Theme:", s.t_theme[trk_theme])

@@ -6,17 +6,11 @@ import lsrutil as s # other python file
 
 ### Variables and constants
 
-lego_header = b'LEGO MOTO\x00\x00' # LEGO MOTO plus 3 null bytes, contents aren't checked, using last one to store custom info
-trk_cst_version = 1 # The version number of the track file, 0 if vanilla, 1 if custom (comments, etc)
+lego_header = b'LEGO MOTO\0\0\0' # LEGO MOTO plus 3 null bytes, contents aren't checked
 
 trk_size = 1 # 0 - Multi, 1 - Single
 trk_theme = 3 # 0 - Jungle, 1 - Ice, 2 - Desert, 3 - City
 trk_time = 1 # 0 - Day, 1 - Night
-trk_comment = "Hey, this is a test of a track comment. Pretty nifty."
-
-#with open('gentrack.py', "rb") as file:
-#	gay = file.read()
-#	trk_comment = gay.decode("utf-8") 
 
 ### Function defintions
 
@@ -85,45 +79,39 @@ def addTrackPad(scr, size):
 	for p in range(amt):
 		addArray(scr, [bytes(8), b'\xFF\xFF\xFF\xFF', bytes(4)])
 
-def addComment(scr, comment):
-	c = b''.join([bytes(10), b'CMNT\xFE\xFF'])
-	c += bytes(comment, 'ascii')
-	c += b'\xFF\xFE' # indicates the comment is over.
-	addBytes(scr, c)
-
-
 ### Main logic
 
 scr = bytearray(b'')
 
 addBytes(scr, lego_header) # Init scratch file with header
-addBytes(scr, s.ib(trk_cst_version)) # Version byte
-addArray(scr, [b'\x05', bytes(3)]) # Unsure, causes crash if changed
-addBytes(scr, b'\x28\x00\x01\x00') # Filesize (65576), game will only recognize files with this specific file size
-addArray(scr, [s.ib(trk_size),  bytes(3)]) # Track Size
-addArray(scr, [s.ib(trk_theme), bytes(3)]) # Track Scenery Theme
-addArray(scr, [s.ib(trk_time),  bytes(3)]) # Track Time of Day
+addBytes(scr, struct.pack("<i", 5)) # Unsure, causes crash if changed, the "crash int"
+addBytes(scr, struct.pack("<i", 65576)) # Filesize (65576), game will only recognize files with this specific file size
+addBytes(scr, struct.pack("<i", trk_size)) # Track Size
+addBytes(scr, struct.pack("<i", trk_theme)) # Track Scenery Theme
+addBytes(scr, struct.pack("<i", trk_time)) # Track Time of Day
 
 ## Build track
 
-addPiece(scr, 0, 0) # make the start line
-for h in range(15):
-	addPiece(scr, 30, random.randint(0,3)) # build track
+loop = 8*(trk_size+1) # 8 - multi, 16 - single
+
+addPiece(scr, 0, 0) # make the start line 
+for h in range(loop-1):
+	addPiece(scr, 30) # build track
 addTrackPad(scr, trk_size)
-for h in range(15):
-	for i in range(16):
-		addPiece(scr, 30, random.randint(0,3)) # build track
+for h in range(loop-1):
+	for i in range(loop):
+		addPiece(scr, 30) # build track
 	addTrackPad(scr, trk_size)
 
-addComment(scr, trk_comment)
+scr = scr.ljust(65572, b'\0') # Pad file with 0x00 until 64kb is reached
 
-scr = scr.ljust(65576, b'\x00') # Pad file with 0x00 until 64kb is reached
+addBytes(scr, struct.pack("<i",1))
 
 ## Write to file
 
 print(scr)
 trkfile = bytes(scr)
 
-with open("_python.trk", "wb") as bf:
+with open("python.trk", "wb") as bf:
     bw = bf.write(trkfile)
     print("Wrote %d bytes." % bw)
