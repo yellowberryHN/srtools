@@ -5,12 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// gentrack.cs - Generates a track file for LEGO Stunt Rally. By Yellowberry, MIT license.
+/// </summary>
+
 namespace srtools
 {
     class Gentrack
     {
-        public static string lego_header = "LEGO MOTO\x00\x00";
-        public static int trk_cst_version = 1;
+        public static string lego_header = "LEGO MOTO\0\0\0";
 
         public static int trk_size = 1; // 0 - Multi, 1 - Single
         public static int trk_theme = 3; // 0 - Jungle, 1 - Ice, 2 - Desert, 3 - City
@@ -32,9 +35,8 @@ namespace srtools
             using (BinaryWriter writer = new BinaryWriter(File.Open(trk_name, FileMode.Create)))
             {
                 Random rnd = new Random();
-                // Write magic number, and custom track info
+                // Write magic number
                 writer.Write(Encoding.ASCII.GetBytes(lego_header));
-                writer.Write((byte)trk_cst_version);
 
                 // The Crash byte, has to be 5
                 writer.Write(bc(5));

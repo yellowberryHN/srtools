@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// readtrack.cs - Reads a LEGO Stunt Rally track file. By Yellowberry, MIT license.
+/// </summary>
+
 namespace srtools
 {
     class Readtrack
     {
         public static string lego_header;
-        public static int trk_cst_version, crashint, trk_size, trk_theme, trk_time, trk_fsize, iters;
+        public static int crashint, trk_size, trk_theme, trk_time, trk_fsize, iters;
         public static long realsize;
 
         public static byte[][][][] trk_pieces;
@@ -32,8 +36,7 @@ namespace srtools
             using (BinaryReader reader = new BinaryReader(file))
             {
                 realsize = file.Length;
-                lego_header = bstr(reader.ReadBytes(11));
-                trk_cst_version = bchar(reader.ReadByte());
+                lego_header = bstr(reader.ReadBytes(12));
                 crashint = bint(reader.ReadBytes(4));
                 trk_fsize = bint(reader.ReadBytes(4));
                 if (trk_fsize != 65576) throw new Exception("Binary filesize reports non 64KB file!");
@@ -65,7 +68,6 @@ namespace srtools
                 }
 
                 Console.WriteLine("## Track information for {0} ##", trk_name);
-                Console.WriteLine("Custom: {0}", trk_cst_version > 0 ? true : false);
                 Console.WriteLine("Fizesize: {0}", trk_fsize);
                 Console.WriteLine("Track Type: {0}", LSRutil.t_size[trk_size]);
                 Console.WriteLine("Track Theme: {0}", LSRutil.t_theme[trk_theme]);
