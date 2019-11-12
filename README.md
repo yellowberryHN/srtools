@@ -37,5 +37,5 @@ readtrack.py rewritten in C#, should behave the same way.
 
 ## Credits
 
-- Zsolt 'Yellowberry' Zitting - gentrack, readtrack, file format research
-- Alberto 'kbios' Mattea - file format research
+- Zsolt '[YellowberryHN](https://github.com/YellowberryHN)' Zitting - gentrack, readtrack, file format research
+- Alberto '[kbios](https://github.com/kbios)' Mattea - file format research
