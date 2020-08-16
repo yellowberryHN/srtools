@@ -1,6 +1,8 @@
 # srtools
 Utilities for LEGO Stunt Rally (LSR).
 
+### Note: The code in this repository is very awful and has been archived, as it is very awful and has been superceded by [LSRutil.NET](https://github.com/YellowberryHN/LSRutil.NET). 
+
 ## Utilities
 
 ## Python 3
